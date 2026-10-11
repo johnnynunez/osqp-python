@@ -17,8 +17,7 @@ jobs:
           - mode: current
             sha: fc57ead241f175d1224864b2874017d8df7f9546
     env:
-      CMAKE_GENERATOR: Visual Studio 17 2022
-      CMAKE_GENERATOR_PLATFORM: ARM64
+      CMAKE_GENERATOR: Ninja Multi-Config
     steps:
       - uses: actions/checkout@v4
         with:
