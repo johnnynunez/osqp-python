@@ -13,9 +13,9 @@ jobs:
       matrix:
         include:
           - mode: pin
-            sha: 7065b3605925f725b7fa8ac76dc4d0bdbe512c75
+            sha: 292515f3df660e8cb27fef100518acbde5766295
           - mode: current
-            sha: fc57ead241f175d1224864b2874017d8df7f9546
+            sha: 66e35a567578dda90911b9a7917e8eead1e3455e
     env:
       CMAKE_GENERATOR: Ninja Multi-Config
     steps:
@@ -24,9 +24,10 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@v4
         with:
-          repository: osqp/osqp-python
+          repository: johnnynunez/osqp-python
           ref: ${{ matrix.sha }}
           path: source
+          fetch-depth: 0
           submodules: recursive
           persist-credentials: false
       - uses: actions/setup-python@v6

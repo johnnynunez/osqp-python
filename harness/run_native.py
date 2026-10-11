@@ -46,6 +46,8 @@ else:
 run('tooling', [python, '-m', 'pip', 'install', 'build==1.6.1', 'setuptools==84.0.0', 'wheel', 'cmake==3.31.10', 'pybind11==3.1.0', 'scikit-build-core==1.1.1', 'setuptools-scm', 'cython==3.3.0', 'numpy==2.5.4', 'scipy==1.18.1', 'pytest==9.1.1', 'jinja2', 'joblib'])
 # Preserve the old project-level SciPy pin failure; do not resolve it away.
 run('original-scipy-pin', [python, '-m', 'pip', 'download', '--only-binary=:all:', '--no-deps', 'scipy==1.11.2', '-d', str(stage/'old-pin-probe')], required=False)
+if package == 'osqp' and mode == 'pin':
+    os.environ['SETUPTOOLS_SCM_PRETEND_VERSION'] = '1.0.5+arm64.1'
 run('build', [python, '-m', 'build', '--wheel', '--no-isolation', '--outdir', str(stage/'wheels'), str(project)])
 wheels = list((stage/'wheels').glob('*.whl'))
 assert len(wheels) == 1
